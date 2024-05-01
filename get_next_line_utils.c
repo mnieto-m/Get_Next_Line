@@ -82,9 +82,9 @@ char	*ft_strdup(const char *s1)
 	dst = (char *)malloc(i);
 	if (dst == 0)
 		return (0);
-	while(len > i)
+	while (len > i)
 	{
-		dst[i] = s1[i]
+		dst[i] = s1[i];
 	}
 	return (dst);
 }
