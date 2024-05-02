@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:45 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/05/02 17:14:42 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:15:36 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ char	*ft_read(char *buffer, int fd)
 	free(tmp);
 	return (buffer);
 }
+
 char	*get_next_line(int fd)
 {
-	char *line;
-	char *buffer;
-	int bytes_read;
+	char	*line;
+	char	*buffer;
+	int		bytes_read;
 
 	line = 0;
 	buffer = 0;
