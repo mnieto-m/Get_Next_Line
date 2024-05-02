@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:45 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/04/24 22:01:22 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:10:40 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*ft_read(char *buffer, int fd)
 {
 	int		bytes_read;
 	char	*tmp;
-
+	
+	tmp = 0;
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	if (bytes_read < 0)
 	{
@@ -35,9 +36,12 @@ char	*get_next_line(int fd)
 	char *buffer;
 	int bytes_read;
 
+	line = 0;
+	buffer = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = ft_read(buffer, fd);
 	if (!buffer)
 		return (NULL);
+	return(line);
 }

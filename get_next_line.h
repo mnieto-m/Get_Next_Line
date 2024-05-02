@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:55:03 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/04/22 17:12:14 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:14:01 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 #endif
 
 #include <stdio.h>
-#include <unistd.h>	
+#include <unistd.h>
+#include <stdlib.h>
 
-#endif GET_NEXT_LINE_H
+char	*get_next_line(int fd);
+char	*ft_read(char *buffer, int fd);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s1);
+
+#endif 
