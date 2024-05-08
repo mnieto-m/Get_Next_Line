@@ -40,10 +40,11 @@ char	*get_next_line(int fd)
 	line = 0;
 	buffer = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(line),NULL);
 	buffer = ft_read(buffer, fd);
 	if (!buffer)
 		return (NULL);
-	line = ft_(buffer);
+	line = ft_line(buffer);
+	buffer = ft_nextstr(buffer);
 	return (line);
 }
