@@ -71,21 +71,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *tmp)
 {
 	char	*dst;
 	size_t	len;
 	size_t	i;
 
 	i = 0;
-	len = ft_strlen(s1) + 1;
-	dst = (char *)malloc(i);
-	if (dst == 0)
-		return (0);
+	len = ft_strlen(tmp) + 1;
+	dst = (char *)malloc(len);
+	if (!dst)
+	{
+		free(tmp);
+		free(dst);
+		return (NULL);
+	}
 	while (len > i)
 	{
-		dst[i] = s1[i];
+		dst[i] = tmp[i];
 	}
+	free(tmp);
 	return (dst);
 }
 
