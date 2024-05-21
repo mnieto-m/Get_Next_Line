@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:45 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/05/02 17:15:36 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:12:49 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	 print_str(char *buffer)
 {
-
+	
 	return (0);
 }
 char	*ft_read(char *buffer, int fd)
