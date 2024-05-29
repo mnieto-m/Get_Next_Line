@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:51 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/05/02 17:14:50 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:24:54 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	unsigned int	i;
 
@@ -42,7 +42,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char  *s1, char  *s2)
 {
 	size_t	n;
 	size_t	i;
@@ -54,7 +54,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	n = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)(malloc(n + 1));
+	str = (char *)(ft_calloc(n + 1,1));
 	if (!str)
 		return (0);
 	while (s1[i] != '\0' && (i < n))
@@ -71,7 +71,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-char	*ft_strdup(const char *tmp)
+char *ft_strdup( char *tmp)
 {
 	char	*dst;
 	size_t	len;
@@ -82,7 +82,6 @@ char	*ft_strdup(const char *tmp)
 	dst = (char *)malloc(len);
 	if (!dst)
 	{
-		free(tmp);
 		free(dst);
 		return (NULL);
 	}
@@ -117,4 +116,22 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	dst[i] = '\0';
 	return (dst);
+}
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*a;
+	size_t i;
+
+	i = 0;
+	if (size != 0 && count > SIZE_MAX / size)
+		return (0);
+	a = (char *)malloc(count * size);
+	if (!a)
+		return (0);
+	while (i < size * count)
+	{
+		((char *)a)[i] = 0;
+		i++;
+	}
+	return (a);
 }
