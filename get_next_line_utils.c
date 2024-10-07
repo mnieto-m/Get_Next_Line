@@ -6,13 +6,13 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:51 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/05/21 20:24:54 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/07 21:33:46 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -24,22 +24,20 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while (!(!s) && s[i])
+	if (!s)
+		return (0);
+	while (s[i])
 	{
 		if (s[i] == (char)c)
-		{
-			return ((char *)&s[i]);
-		}
-		i++;
+			return (1);
+		++i;
 	}
-	if ((char)c == 0)
-		return ((char *)&s[i]);
-	return (NULL);
+	return (0);
 }
 
 char	*ft_strjoin(char  *s1, char  *s2)
@@ -49,14 +47,14 @@ char	*ft_strjoin(char  *s1, char  *s2)
 	size_t	j;
 	char	*str;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	if (!s1 || !s2)
 		return (NULL);
 	n = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)(ft_calloc(n + 1,1));
+	str = (malloc(sizeof(char)* (n + 1)));
 	if (!str)
-		return (0);
+		return (NULL);
 	while (s1[i] != '\0' && (i < n))
 	{
 		str[i] = s1[i];
@@ -79,59 +77,12 @@ char *ft_strdup( char *tmp)
 
 	i = 0;
 	len = ft_strlen(tmp) + 1;
-	dst = (char *)malloc(len);
+	dst = malloc(sizeof(char) *len);
 	if (!dst)
-	{
-		free(dst);
 		return (NULL);
-	}
 	while (len > i)
 	{
 		dst[i] = tmp[i];
 	}
-	free(tmp);
 	return (dst);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*dst;
-	size_t	i;
-	size_t	s_len;
-
-	i = 0;
-	if (ft_strlen(s) >= start + len)
-		s_len = len;
-	else if (start > ft_strlen(s))
-		s_len = 0;
-	else
-		s_len = ft_strlen(s) - start;
-	dst = (char *)malloc(s_len + 1);
-	if (!dst || !s)
-		return (0);
-	while (i < s_len)
-	{
-		dst[i] = s[i + start];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-void	*ft_calloc(size_t count, size_t size)
-{
-	char	*a;
-	size_t i;
-
-	i = 0;
-	if (size != 0 && count > SIZE_MAX / size)
-		return (0);
-	a = (char *)malloc(count * size);
-	if (!a)
-		return (0);
-	while (i < size * count)
-	{
-		((char *)a)[i] = 0;
-		i++;
-	}
-	return (a);
 }
