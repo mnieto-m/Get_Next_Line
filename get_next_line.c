@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:45 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/10/09 00:24:35 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:39:43 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ char	*set_line(char *str)
 	while (str[i])
 		str_caract[j++] = str[i++];
 	str_caract[j] = '\0';
-	free(str);
 	return (str_caract);
 }
+
 char	*take_line(char *str)
 {
 	int		i;
@@ -61,16 +61,17 @@ char	*take_line(char *str)
 	line[i] = '\0';
 	return (line);
 }
+
 char	*read_line(int fd, char *str)
 {
 	int		bytes_read;
 	char	*buffer;
 
-	buffer = (char *)malloc(sizeof(char)*(BUFFER_SIZE + 1));
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr(str, '\n') && bytes_read != 0)
+	while ((!ft_strchr(str, '\n')) && bytes_read != 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
@@ -85,6 +86,7 @@ char	*read_line(int fd, char *str)
 	free(buffer);
 	return (str);
 }
+
 char	*get_next_line(int fd)
 {
 	static char	*str;
@@ -92,7 +94,6 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		free(str);
 		return (str = NULL);
 	}
 	str = read_line(fd, str);
