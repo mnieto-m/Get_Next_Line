@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:55:03 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/10/09 22:39:21 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:52:50 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <time.h>
+# include <limits.h>
 # include <unistd.h>
 
 char	*get_next_line(int fd);
