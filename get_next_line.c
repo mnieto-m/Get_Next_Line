@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:45 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/10/09 22:39:43 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/10 14:35:44 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ char	*set_line(char *str)
 	}
 	str_caract = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1));
 	if (!str_caract)
-		return (NULL);
+		{
+			free (str);
+			return (NULL);
+		}
 	j = 0;
 	i++;
 	while (str[i])
 		str_caract[j++] = str[i++];
 	str_caract[j] = '\0';
+	free(str);
 	return (str_caract);
 }
 
@@ -93,9 +97,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
 		return (str = NULL);
-	}
 	str = read_line(fd, str);
 	if (!str)
 		return (NULL);

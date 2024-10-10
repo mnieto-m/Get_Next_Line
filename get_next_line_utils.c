@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:51 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/10/09 22:40:12 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:14:43 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = -1;
 	while (++i < (int)l1)
 		str[i] = s1[i];
+	free(s1);
 	j = -1;
 	while (++j < (int)l2)
 		str[i++] = s2[j];
