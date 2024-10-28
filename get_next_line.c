@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:45 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/10/15 20:00:55 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/28 23:39:16 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,19 @@ char	*set_line(char *str)
 	int		j;
 	char	*str_caract;
 
+	if(!str)
+		return(NULL);
 	i = 0;
 	while (str[i] != '\0' && str[i] != '\n')
 		i++;
 	if (!str[i])
-	{
-		free(str);
-		return (NULL);
-	}
+		return (free(str),NULL);
 	str_caract = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1));
 	if (!str_caract)
-		{
-			free (str);
-			return (NULL);
-		}
+	{
+		free (str);
+		return (NULL);
+	}
 	j = 0;
 	i++;
 	while (str[i])
@@ -45,7 +44,7 @@ char	*take_line(char *str)
 {
 	int		i;
 	char	*line;
-
+	
 	i = 0;
 	if (!str || str[0] == '\0')
 		return (NULL);
@@ -71,24 +70,21 @@ char	*read_line(int fd, char *str)
 	int		bytes_read;
 	char	*buffer;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
 	bytes_read = 1;
 	while ((!ft_strchr(str, '\n')) && bytes_read != 0)
 	{
+		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!buffer)
+			return (free (str), buffer = NULL, NULL);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-		{
-			free(buffer);
-			free(str);
-			return (NULL);
-		}
+		if(bytes_read < 0)
+			return(free(buffer), free(str), NULL);
+		if (bytes_read == 0)
+			return(free(buffer), str);
 		buffer[bytes_read] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
-	free(buffer);
-	return (str);
+	return (buffer = NULL , str);
 }
 
 char	*get_next_line(int fd)
@@ -101,7 +97,11 @@ char	*get_next_line(int fd)
 	str = read_line(fd, str);
 	if (!str)
 		return (NULL);
+	else if(!str[0])
+		return(free(str), str = NULL, NULL);
 	line = take_line(str);
+	if(!line)
+		return(free(str), str = NULL, NULL);
 	str = set_line(str);
 	return (line);
 }

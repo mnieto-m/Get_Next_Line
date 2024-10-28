@@ -6,11 +6,12 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:54:51 by mnieto-m          #+#    #+#             */
-/*   Updated: 2024/10/21 21:04:52 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2024/10/28 23:46:38 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 
 size_t	ft_strlen(const char *s)
 {
@@ -24,24 +25,22 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	*tmp;
+	int	i;
 
 	i = 0;
-	tmp = (char *)s;
-	if (!tmp)
-		return (0);
-	while (tmp[i])
+	if (!s || !c)
+		return (NULL);
+	while (s[i])
 	{
-		if (tmp[i] == (char)c)
-			return (1);
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	if ((char)c == '\0')
+	if (s[i] != (unsigned char)c)
 		return (0);
-	return (0);
+	return ((char *)&s[i]);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -67,5 +66,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = -1;
 	while (++j < (int)l2)
 		str[i++] = s2[j];
+	free(s2);
 	return (str);
 }
